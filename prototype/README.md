@@ -22,14 +22,20 @@
     - 부모의 함수로 새로운 객체를 생성
     - 자식함수의 prototype을 부모 객체로 설정
     - 이 방법으로 할 경우 자식의 constructor가 깨진다.
-- Object.create 생성자
+- Object.create 생성자 (작동 위임 / delegation)
     - 프로퍼티 초기화가 번거롭다.
+    ```
+        // Object.create 내부 동작
+        Object.create = function(obj) {
+            function Ghost() {}
+            Ghost.prototype = obj;
+            return new Ghost();
+        }
+    ```
 - new와 Object.create의 결합
     - protype을 Object.create()로 설정
     - constructor를 다시 살려놓는다.
 
-- 위임형 상속
-    - 
 - 연결형 상속
     - Object.assign을 통해 구현함
     - JQuery, lodash등 .extend()와 비슷

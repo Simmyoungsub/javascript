@@ -21,3 +21,17 @@ const obj = {
 const objs_outside = outside.bind(obj);
 objs_outside();
 // outside();
+
+(function() {
+    function show() {
+        console.log(`My name is ${this.name}`);
+    }
+
+    const jake = {name: 'jake'};
+    const john = {name: 'john'};
+    const carl = {name: 'carl'};
+    const iamJake = show.bind(jake);
+    iamJake();
+    show.call(john);
+    show.apply(carl);
+})();
