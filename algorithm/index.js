@@ -120,7 +120,7 @@
         return switches[0];
       }
 
-      return switches[n] && isLight(n - 1);
+      return switches[n] && isLight(n - 1); // 팩토리얼을 재귀 함수로 풀었던 경험을 바탕으로 알고리즘 도출
     }
 
     T.forEach(p => {
