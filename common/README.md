@@ -53,3 +53,11 @@
         }
     }).then(...)
 ```
+
+## 다크모드 favicon 처리
+### 내용
+다크 모드로 사용하고 있는데 요즘 만들고있는 블로그의 favicon이 잘 안보이는 현상이 있었다.
+prefers-color-scheme: dark/light 이런식으로 프로퍼티를 미디어쿼리를 사용하여 감지할 수 있도록 제공해준다.
+### 참고
+https://developer.mozilla.org/ko/docs/Web/CSS/@media/prefers-color-scheme 이 문서에서도 참고가 가능하다.
+https://shubhamjain.co/til/dark-mode-favicon/
