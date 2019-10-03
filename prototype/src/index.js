@@ -1,3 +1,5 @@
+import {P, C} from './es6';
+
 function Person() { };
 
 Person.prototype.hand = 2;
@@ -104,3 +106,11 @@ console.dir(Person);
     console.dir(model);
     console.dir(model.__proto__ === Person.prototype);
 })();
+
+(function() {
+    const p = new P();
+    const c = new C();
+
+    console.dir(p);
+    console.dir(c);
+})()
