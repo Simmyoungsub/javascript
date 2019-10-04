@@ -62,3 +62,6 @@
 ## 이터레이터
 - 제너레이터를 제어하는 객체
 - 변수에 할당할수있고, next() 함수를 사용하여 제너레이터가 현재 위치에서 다음 yield 또는 끝까지 실행시킬수있다.
+
+# 참고
+- https://dev.to/rfornal/use-cases-for-javascript-generators-1npc
