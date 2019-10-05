@@ -1,6 +1,4 @@
-"use strict";
-
-var _es = require("./es6");
+import { P, C } from './es6';
 
 function Person() {}
 
@@ -8,8 +6,8 @@ function Person() {}
 Person.prototype.hand = 2;
 Person.prototype.body = 1;
 Person.prototype.nose = 1;
-var kim = new Person();
-var park = new Person();
+const kim = new Person();
+const park = new Person();
 console.dir(kim);
 console.dir(park);
 console.dir(Person);
@@ -29,7 +27,7 @@ console.dir(Person);
 
   ;
   Child.prototype = new Parent();
-  var child = new Child();
+  const child = new Child();
   console.dir(Child);
   console.dir(child); // Child는 체이닝을 통해 Parent의 constructor를 반환
   // Child의 constructor가 깨짐
@@ -44,7 +42,7 @@ console.dir(Person);
   }
 
   ;
-  var child = Object.create(Parent.prototype); // 상속을 했지만 name이 없음
+  const child = Object.create(Parent.prototype); // 상속을 했지만 name이 없음
   // Parent.call(child, 'child'); // name을 초기화, 객체 프로퍼티 설정
 
   console.dir(child);
@@ -62,22 +60,22 @@ console.dir(Person);
 
   Child.prototype = Object.create(Parent.prototype);
   Child.prototype.constructor = Child;
-  var child = new Child('child');
+  const child = new Child('child');
   console.dir(child.name);
 })(); // 위임형 상속
 // 연결형 상속
 
 
 (function () {
-  var proto = {
+  const proto = {
     hello: function hello() {
-      return "Hello, my name is ".concat(this.name);
+      return `Hello, my name is ${this.name}`;
     }
   };
-  var george = Object.assign({}, proto, {
+  const george = Object.assign({}, proto, {
     name: 'George'
   });
-  var msg = george.hello();
+  const msg = george.hello();
   console.log(msg); // Hello, my name is George
 })(); // 함수형 상속
 
@@ -86,37 +84,84 @@ console.dir(Person);
   function Person() {}
 
   Person.prototype.say = function () {
-    console.log("Hello! My name is ".concat(this.name));
+    console.log(`Hello! My name is ${this.name}`);
   };
 
-  var rawMixin = function rawMixin() {
-    var attrs = {};
+  const rawMixin = function () {
+    const attrs = {};
     return Object.assign(this, {
-      set: function set(name, value) {
+      set(name, value) {
         attrs[name] = value;
       },
-      get: function get(name) {
+
+      get(name) {
         return attrs[name];
       }
+
     }, Person.prototype);
   };
 
-  var mixinModel = function mixinModel(target) {
-    return rawMixin.call(target);
-  };
+  const mixinModel = target => rawMixin.call(target);
 
-  var george = {
+  const george = {
     name: 'george'
   };
-  var model = mixinModel(george);
+  const model = mixinModel(george);
   model.say();
   console.dir(model);
   console.dir(model.__proto__ === Person.prototype);
 })();
 
 (function () {
-  var p = new _es.P();
-  var c = new _es.C();
+  const p = new P();
+  const c = new C();
   console.dir(p);
   console.dir(c);
+})();
+
+(function () {
+  class PK {
+    constructor(gender) {
+      this.gender = gender;
+    }
+
+  }
+
+  class K extends PK {
+    constructor(name, age, gender) {
+      super(gender);
+      this.name = name;
+      this.age = age;
+    }
+
+  }
+
+  const k = new K();
+  console.log(k);
+
+  function f() {}
+
+  ;
+
+  function ff() {}
+
+  ;
+  ff.prototype = Object.create(f.prototype);
+  ff.prototype.constructor = ff;
+  const o = new ff();
+  console.log(o);
+})();
+
+(function () {
+  const a = {};
+
+  a[Symbol.iterator] = function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+  };
+
+  for (const i of a) {
+    console.log(i);
+  }
 })();

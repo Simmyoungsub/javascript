@@ -113,4 +113,53 @@ console.dir(Person);
 
     console.dir(p);
     console.dir(c);
-})()
+})();
+
+(function() {
+
+    class PK {
+        constructor(gender) {
+            this.gender = gender;
+        }
+    }
+
+    class K extends PK {
+        constructor(name, age, gender) {
+            super(gender);
+            this.name = name;
+            this.age = age;
+        }
+    }
+
+    const k = new K();
+
+    console.log(k);
+
+    function f() {};
+
+    function ff() {};
+
+    ff.prototype = Object.create(f.prototype);
+    ff.prototype.constructor = ff;
+
+    const o = new ff();
+
+    console.log(o);
+
+})();
+
+(function() {
+
+    const a = {};
+
+    a[Symbol.iterator] = function*() {
+        yield 1;
+        yield 2;
+        yield 3;
+    };
+
+    for (const i of a) {
+        console.log(i);
+    }
+
+})();
