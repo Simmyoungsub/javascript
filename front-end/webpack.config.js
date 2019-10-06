@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   // enntry file
@@ -19,7 +20,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: '프론트엔드 정복기',
       template: 'public/index.html'
-    })
+    }),
+    new CleanWebpackPlugin()
   ],
   optimization: {
     splitChunks: {
